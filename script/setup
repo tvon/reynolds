@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+docker-compose up -d postgres
+while true
+do
+  echo "#### Waiting for postgres to start..."
+  docker-compose run --rm postgres psql ${DATABASE_URL%/*}/template1 -c select 1 \
+    && break
+done
+
+docker-compose run --rm web mix do deps.get, compile, ecto.create, ecto.migrate
+docker-compose ps

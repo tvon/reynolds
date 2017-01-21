@@ -36,8 +36,5 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :reynolds, Reynolds.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "reynolds_dev",
-  hostname: "localhost",
+  url: System.get_env("DATABASE_URL"),
   pool_size: 10

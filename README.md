@@ -1,15 +1,27 @@
 # Reynolds
 
-To start your Phoenix app:
+Development:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `npm install`
-  * Start Phoenix endpoint with `mix phoenix.server`
+```
+script/setup
+```
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+```
+docker-compose build
+docker-compose create
+docker-compose start postgres
+docker-compose run web mix do deps.get, compile, ecto.create
+```
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+Test:
+
+```
+docker-compose build
+docker-compose create
+docker-compose start postgres
+docker-compose run test mix do deps.get, compile, ecto.create
+docker-compose run test test
+```
 
 ## Learn more
 
