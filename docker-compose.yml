@@ -4,7 +4,6 @@ services:
   web:
     build: .
     image: local/reynolds
-    command: mix phoenix.server # Start the server if no other command is specified
     environment:
       MIX_ENV: dev
       PORT: 4000
@@ -15,6 +14,7 @@ services:
       - "4000:4000"
     links:
       - postgres
+    command: ["mix", "phoenix.server"]
 
   test:
     image: local/reynolds
